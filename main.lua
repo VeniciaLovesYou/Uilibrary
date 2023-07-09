@@ -25,6 +25,7 @@ function uilibrary:init(title)
 
 	ScreenGui.Parent = game.CoreGui
 	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+	ScreenGui.Name = "ui"
 
 	MainFrame.Name = "MainFrame"
 	MainFrame.Parent = ScreenGui
