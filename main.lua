@@ -322,7 +322,7 @@ function uilibrary:init(title)
 		end
 		
 		
-		function tabtools:TextBox(TextBoxName, valuetext, youaregay)
+		function tabtools:Textbox(TextBoxName, valuetext, youaregay)
 			youaregay = youaregay or function() end
 			
 			
