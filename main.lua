@@ -302,7 +302,7 @@ function uilibrary:init(title)
 			local value = false
 			ActualToggle.MouseButton1Click:Connect(function()
 				value = not value
-				callmebackbabe(value)
+				pcall(callmebackbabe(value))
 				
 				if value then 
 					tweenservice:Create(ActualToggle, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
