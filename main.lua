@@ -229,7 +229,7 @@ function uilibrary:init(title)
 		
 		function tabtools:Toggle(ToggleName, callmebackbabe)
 			
-			local value = false
+			local toggled = false
 			
 			callmebackbabe = callmebackbabe or function() end
 			
@@ -302,9 +302,9 @@ function uilibrary:init(title)
 			
 			ActualToggle.MouseButton1Click:Connect(function()
 				
-				value = not value
-				callmebackbabe(value)	
-				if value == true then 
+				toggled = not toggled
+				callmebackbabe(toggled)	
+				if toggled then 
 					tweenservice:Create(ActualToggle, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 						BackgroundColor3 = Color3.fromRGB(8, 189, 38)
 					}):Play()
