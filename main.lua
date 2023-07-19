@@ -6,7 +6,7 @@ local tweenservice = game:GetService("TweenService")
 
 uilibrary = {}
 function uilibrary:init(title)
-	--// Instances
+	
 	local ScreenGui = Instance.new("ScreenGui")
 	local MainFrame = Instance.new("Frame")
 	local MainFrameCorner = Instance.new("UICorner")
@@ -26,7 +26,7 @@ function uilibrary:init(title)
 	local A = Instance.new("ImageButton")
 	local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
 	local minimize = false
-	--// Properties
+	
 
 
 	ScreenGui.Parent = game.CoreGui
