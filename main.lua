@@ -229,9 +229,9 @@ function uilibrary:init(title)
 		
 		function tabtools:Toggle(ToggleName, callmebackbabe)
 			
+			local value = false
 			
-			
-			-- callmebackbabe = callmebackbabe or function() end
+			callmebackbabe = callmebackbabe or function() end
 			
 			
 			local Toggle = Instance.new("Frame")
@@ -299,10 +299,11 @@ function uilibrary:init(title)
 			ActualToggleCorner.CornerRadius = UDim.new(0, 5)
 			ActualToggleCorner.Name = "ActualToggleCorner"
 			ActualToggleCorner.Parent = ActualToggle
-			local value = false
+			
 			ActualToggle.MouseButton1Click:Connect(function()
 				
-				
+				value = not value
+				callmebackbabe(value)	
 				if value == true then 
 					tweenservice:Create(ActualToggle, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 						BackgroundColor3 = Color3.fromRGB(8, 189, 38)
@@ -317,8 +318,8 @@ function uilibrary:init(title)
 			end)
 
 
-			value = not value
-			callmebackbabe(value)
+			
+			
 			
 			
 			
