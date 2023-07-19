@@ -29,7 +29,7 @@ function uilibrary:init(title)
 	--// Properties
 
 
-	ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
+	ScreenGui.Parent = game.CoreGui
 	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	ScreenGui.Name = "ui"
 
