@@ -303,7 +303,7 @@ function uilibrary:init(title)
 			ActualToggle.MouseButton1Click:Connect(function()
 				
 				
-				if value then 
+				if value == true then 
 					tweenservice:Create(ActualToggle, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 						BackgroundColor3 = Color3.fromRGB(8, 189, 38)
 					}):Play()
