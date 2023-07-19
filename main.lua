@@ -13,55 +13,132 @@ function uilibrary:init(title)
 	local Title = Instance.new("TextLabel")
 	local TitlePadding = Instance.new("UIPadding")
 	local SecondaryFrame = Instance.new("Frame")
+	local UIListLayout = Instance.new("UIListLayout")
+	local Watermark = Instance.new("Frame")
 	local SideBar = Instance.new("ScrollingFrame")
 	local Sidebarcorner = Instance.new("UICorner")
 	local Sidebarlistlayout = Instance.new("UIListLayout")
 	local Sidebarpadding = Instance.new("UIPadding")
 	local TabFolder = Instance.new("Folder")
-
-
+	local ControlButtons = Instance.new("Frame")
+	local UIListLayout_2 = Instance.new("UIListLayout")
+	local UIPadding = Instance.new("UIPadding")
+	local A = Instance.new("ImageButton")
+	local UIAspectRatioConstraint = Instance.new("UIAspectRatioConstraint")
+	local minimize = false
 	--// Properties
 
 
-	ScreenGui.Parent = game.CoreGui
+	ScreenGui.Parent = game.Players.LocalPlayer.PlayerGui
 	ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 	ScreenGui.Name = "ui"
+
+	
 
 	MainFrame.Name = "MainFrame"
 	MainFrame.Parent = ScreenGui
 	MainFrame.BackgroundColor3 = Color3.fromRGB(25, 25, 25)
 	MainFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	MainFrame.BorderSizePixel = 0
-	MainFrame.Position = UDim2.new(0.36021927, 0, 0.288029939, 0)
-	MainFrame.Size = UDim2.new(0, 524, 0, 339)
+	MainFrame.Position = UDim2.new(0.359186739, 0, 0.288029939, 0)
+	MainFrame.Size = UDim2.new(0, 524, 0, 50)
 
 	MainFrameCorner.Name = "MainFrameCorner"
 	MainFrameCorner.Parent = MainFrame
 
+	Watermark.Name = "Watermark"
+	Watermark.Parent = MainFrame
+	Watermark.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	Watermark.BackgroundTransparency = 1.000
+	Watermark.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	Watermark.BorderSizePixel = 0
+	Watermark.Size = UDim2.new(0, 140, 0, 50)
+
 	Title.Name = "Title"
-	Title.Parent = MainFrame
+	Title.Parent = Watermark
 	Title.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	Title.BackgroundTransparency = 1.000
 	Title.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Title.BorderSizePixel = 0
-	Title.Position = UDim2.new(0.685114503, 0, 0, 0)
+	Title.Position = UDim2.new(-0.0152671756, 0, 0.0029498525, 0)
 	Title.Size = UDim2.new(0, 165, 0, 50)
 	Title.Font = Enum.Font.SourceSansBold
-	Title.Text = title
+	Title.Text = "Rate my poop v3"
 	Title.TextColor3 = Color3.fromRGB(255, 255, 255)
 	Title.TextSize = 17.000
 	Title.TextTransparency = 0.500
 
 	TitlePadding.Name = "TitlePadding"
 	TitlePadding.Parent = Title
-	TitlePadding.PaddingLeft = UDim.new(0, 25)
+	TitlePadding.PaddingRight = UDim.new(0, 25)
+
+	UIListLayout.Parent = Watermark
+	UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+
+	ControlButtons.Name = "ControlButtons"
+	ControlButtons.Parent = MainFrame
+	ControlButtons.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	ControlButtons.BackgroundTransparency = 1.000
+	ControlButtons.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	ControlButtons.BorderSizePixel = 0
+	ControlButtons.Position = UDim2.new(0.697, 0, 0.236, 0)
+	ControlButtons.Size = UDim2.new(0, 155, 0, 26)
+
+	UIListLayout_2.Parent = ControlButtons
+	UIListLayout_2.FillDirection = Enum.FillDirection.Horizontal
+	UIListLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Right
+	UIListLayout_2.VerticalAlignment = Enum.VerticalAlignment.Center
+
+	UIPadding.Parent = ControlButtons
+	UIPadding.PaddingRight = UDim.new(0, 10)
+
+	A.Name = "A"
+	A.Parent = ControlButtons
+	A.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+	A.BackgroundTransparency = 1.000
+	A.BorderColor3 = Color3.fromRGB(0, 0, 0)
+	A.BorderSizePixel = 0
+	A.Size = UDim2.new(0, 32, 0, 20)
+	A.Image = "rbxassetid://10734895530"
+	
+	A.MouseButton1Click:Connect(function()
+		
+		if minimize then
+			
+			SecondaryFrame:TweenSize(UDim2.new(0, 524, 0, 347), "Out", "Quart", 0.15)
+			SideBar:TweenSize(UDim2.new(0, 155, 0, 347), "Out", "Quart", 0.15)
+			SideBar.ScrollBarThickness = 5
+			for i,v in pairs(TabFolder:GetChildren()) do
+				if v:IsA("ScrollingFrame") then
+					v:TweenSize(UDim2.new(0, 369, 0 , 347), "Out", "Quart", 0.15)
+					v.ScrollBarThickness = 5
+				end
+			end
+			
+		else
+			SecondaryFrame:TweenSize(UDim2.new(0, 524, 0, 0), "Out", "Quart", 0.15)
+			SideBar:TweenSize(UDim2.new(0, 155, 0, 0), "Out", "Quart", 0.15)
+			SideBar.ScrollBarThickness = 0
+			for i,v in pairs(TabFolder:GetChildren()) do
+				if v:IsA("ScrollingFrame") then
+					v:TweenSize(UDim2.new(0, 369, 0 , 0), "Out", "Quart", 0.15)
+					v.ScrollBarThickness = 0
+				end
+			end
+		end
+		minimize = not minimize
+		
+		
+	end)
+
+	UIAspectRatioConstraint.Parent = A
 
 	SecondaryFrame.Name = "SecondaryFrame"
 	SecondaryFrame.Parent = MainFrame
 	SecondaryFrame.BackgroundColor3 = Color3.fromRGB(28, 28, 28)
 	SecondaryFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	SecondaryFrame.BorderSizePixel = 0
-	SecondaryFrame.Position = UDim2.new(0, 0, 0.147492632, 0)
+	SecondaryFrame.Position = UDim2.new(0, 0, 0, 45)
 	SecondaryFrame.Size = UDim2.new(0, 524, 0, 347)
 	TabFolder.Name = "TabFolder"
 	TabFolder.Parent = SecondaryFrame
@@ -86,21 +163,21 @@ function uilibrary:init(title)
 	Sidebarlistlayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
 	Sidebarlistlayout.SortOrder = Enum.SortOrder.LayoutOrder
 	Sidebarlistlayout.Padding = UDim.new(0, 5)
-	
-	
+
+
 	Sidebarpadding.Name = "Sidebarpadding"
 	Sidebarpadding.Parent = SideBar
 	Sidebarpadding.PaddingTop = UDim.new(0, 5)
-	
-	
+
+
 	local UIS = game:GetService("UserInputService")
 	local function dragify(Frame)
-	   local startPos = nil
-	   local	dragToggle = nil
-	   local	dragSpeed = 0.15
-	   local	dragInput = nil
-	   local	dragStart = nil
-	   local	dragPos = nil
+		local startPos = nil
+		local	dragToggle = nil
+		local	dragSpeed = 0.15
+		local	dragInput = nil
+		local	dragStart = nil
+		local	dragPos = nil
 		local function updateInput(input)
 			local Delta = input.Position - dragStart
 			local Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + Delta.X, startPos.Y.Scale, startPos.Y.Offset + Delta.Y)
@@ -152,7 +229,7 @@ function uilibrary:init(title)
 		TabExample.ScrollBarThickness = 5
 		TabPadding.Name = "TabPadding"
 		TabPadding.Parent = TabExample
-        
+
 		TabGridLayout.Name = "TabGridLayout"
 		TabGridLayout.Parent = TabExample
 		TabGridLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
@@ -171,8 +248,8 @@ function uilibrary:init(title)
 		TabSideBarBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
 		TabSideBarBtn.TextSize = 17.000
 		TabSideBarBtn.Text = pagetitle
-		
-		
+
+
 		TabSideBarBtn.MouseButton1Click:Connect(function()
 			for i,v in pairs(TabFolder:GetChildren()) do
 				if v:IsA("ScrollingFrame") then
@@ -181,8 +258,8 @@ function uilibrary:init(title)
 					end
 				end
 			end
-			
-			
+
+
 			TabExample.Visible = true
 		end)
 
@@ -223,17 +300,17 @@ function uilibrary:init(title)
 				callmebackbabe()
 			end)
 		end
-		
-		
-		
-		
+
+
+
+
 		function tabtools:Toggle(ToggleName, callmebackbabe)
-			
+
 			local toggled = false
-			
+
 			callmebackbabe = callmebackbabe or function() end
-			
-			
+
+
 			local Toggle = Instance.new("Frame")
 			local ToggleCorner = Instance.new("UICorner")
 			local ToggleText = Instance.new("TextLabel")
@@ -299,46 +376,46 @@ function uilibrary:init(title)
 			ActualToggleCorner.CornerRadius = UDim.new(0, 5)
 			ActualToggleCorner.Name = "ActualToggleCorner"
 			ActualToggleCorner.Parent = ActualToggle
-			
+
 			ActualToggle.MouseButton1Click:Connect(function()
-				
+
 				toggled = not toggled
 				callmebackbabe(toggled)	
 				if toggled then 
 					tweenservice:Create(ActualToggle, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 						BackgroundColor3 = Color3.fromRGB(8, 189, 38)
 					}):Play()
-					
+
 				else
 					tweenservice:Create(ActualToggle, TweenInfo.new(0.15, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
 						BackgroundColor3 = Color3.fromRGB(198, 0, 3)
 					}):Play()
-					
-					end
+
+				end
 			end)
 
 
-			
-			
-			
-			
-			
-			
+
+
+
+
+
+
 		end
-		
-		
+
+
 		function tabtools:Textbox(TextBoxName, valuetext, youaregay)
 			youaregay = youaregay or function() end
-			
-			
+
+
 			local TextInput = Instance.new("Frame")
 			local TextInputCorner = Instance.new("UICorner")
 			local TextInputText = Instance.new("TextLabel")
 			local TextInputPadding = Instance.new("UIPadding")
 			local TextBox = Instance.new("TextBox")
 			local UICorner = Instance.new("UICorner")
-			
-			
+
+
 			TextInput.Name = TextBoxName
 			TextInput.Parent = TabExample
 			TextInput.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
@@ -381,14 +458,14 @@ function uilibrary:init(title)
 			TextBox.Text = valuetext
 
 			UICorner.Parent = TextBox
-			
+
 			TextBox.FocusLost:Connect(function()
 				youaregay(TextBox.Text)
 			end)
 		end
-        return tabtools
+		return tabtools
 	end
-  return tabstuff
+	return tabstuff
 
 end
 
